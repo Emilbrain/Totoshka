@@ -49,7 +49,7 @@
             <h2>Новинки</h2>
             <div class="product-grid">
                 <div class="product-card">
-                    <img src="{{asset('images/product/product.png')}}" alt="Мягкий зайка">
+                    <img src="{{asset('images/product/bunny/bunny.png')}}" alt="Мягкий зайка">
                     <h3 class="product-title">Мягкий зайка</h3>
                     <p class="product-price">1 290 ₽</p>
                     <div class="product__btn btn">

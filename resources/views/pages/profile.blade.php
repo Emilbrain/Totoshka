@@ -1,16 +1,19 @@
 @extends('template.app')
 
 @section('content')
-    <div class="section mt150px">
+    <div class="section mt150px mb100px">
         <h1>👤 Профиль пользователя</h1>
 
         <div class="profile-section">
 
             <div class="profile-info">
                 <img src="{{asset('images/profile/profile.png')}}" alt="Аватар пользователя">
-                <h2>Имя пользователя</h2>
-                <p>Email: example@mail.ru</p>
-                <button class="logout-btn">Выйти из аккаунта</button>
+                <h2>{{auth()->user()->name}}</h2>
+                <p>Email: {{auth()->user()->email}}</p>
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button class="logout-btn">Выйти из аккаунта</button>
+                </form>
             </div>
 
             <div class="profile-orders">

@@ -18,7 +18,19 @@
             <!-- Сетка товаров -->
             <div class="catalog-grid">
                 <div class="product-card">
-                    <img src="{{asset('images/product/product.png')}}" alt="Мягкий зайка">
+                    <img src="{{asset('images/product/bunny/bunny.png')}}" alt="Мягкий зайка">
+                    <h3 class="product-title">Мягкий зайка</h3>
+                    <p class="product-price">1 290 ₽</p>
+                    <div class="product__btn btn">
+                        <a href="{{route('product.view')}}">Подробнее</a>
+                    </div>
+                    <div class="product__btn btn">
+                        <a href="">В корзину 🛒</a>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="{{asset('images/plug/plug.png')}}" alt="Мягкий зайка">
                     <h3 class="product-title">Мягкий зайка</h3>
                     <p class="product-price">1 290 ₽</p>
                     <div class="product__btn btn">
@@ -30,19 +42,7 @@
                 </div>
 
                 <div class="product-card">
-                    <img src="{{asset('images/product/product.png')}}" alt="Мягкий зайка">
-                    <h3 class="product-title">Мягкий зайка</h3>
-                    <p class="product-price">1 290 ₽</p>
-                    <div class="product__btn btn">
-                        <a href="">Подробнее</a>
-                    </div>
-                    <div class="product__btn btn">
-                        <a href="">В корзину 🛒</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="{{asset('images/product/product.png')}}" alt="Мягкий зайка">
+                    <img src="{{asset('images/plug/plug.png')}}" alt="Мягкий зайка">
                     <h3 class="product-title">Мягкий зайка</h3>
                     <p class="product-price">1 290 ₽</p>
                     <div class="product__btn btn">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="product-card">
-                    <img src="{{asset('images/product/product.png')}}" alt="Мягкий зайка">
+                    <img src="{{asset('images/plug/plug.png')}}" alt="Мягкий зайка">
                     <h3 class="product-title">Мягкий зайка</h3>
                     <p class="product-price">1 290 ₽</p>
                     <div class="product__btn btn">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="product-card">
-                    <img src="{{asset('images/product/product.png')}}" alt="Мягкий зайка">
+                    <img src="{{asset('images/plug/plug.png')}}" alt="Мягкий зайка">
                     <h3 class="product-title">Мягкий зайка</h3>
                     <p class="product-price">1 290 ₽</p>
                     <div class="product__btn btn">

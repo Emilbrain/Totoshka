@@ -1,4 +1,5 @@
 'use strict';
+
 document.addEventListener("DOMContentLoaded", function () {
     const forms = document.querySelectorAll('.modal__form');
 
@@ -27,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (response.ok && data.success) {
                     if (form.id === "registerForm") {
                         switchForm('login');
-                        alert("Вы успешно зарегистрировались! Войдите в аккаунт.");
+                        showToast("Вы успешно зарегистрировались! Войдите в аккаунт.");
                     } else {
                         closeModal();
                         window.location.href = data.role === 'admin' ? "/admin" : "/profile";
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 } else if (response.status === 422 && data.errors) {
                     for (let field in data.errors) {
                         const errorDiv = form.querySelector(`#error-${form.id}_${field}`);
-                        const inputField = form.querySelector(`#${form.id}_${field}`);
+                        const inputField = form.querySelector(`#error-${form.id}_${field}`);
 
                         if (errorDiv) errorDiv.innerText = data.errors[field][0];
                         if (inputField) inputField.classList.add("input-error");

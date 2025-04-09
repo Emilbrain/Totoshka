@@ -79,7 +79,7 @@ class UserController extends Controller
                 'success' => false,
                 'message' => 'Неверный email или пароль',
                 'errors' => $validator->errors()
-            ], 401);
+            ], 422);
         }
     }
 
@@ -87,6 +87,6 @@ class UserController extends Controller
         Auth::logout();
         request()->session()->invalidate();
         request()->session()->regenerateToken();
-        return redirect()->route('view.event');
+        return redirect()->route('index.view');
     }
 }

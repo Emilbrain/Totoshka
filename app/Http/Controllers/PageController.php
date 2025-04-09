@@ -15,6 +15,11 @@ class PageController extends Controller
     {
         return view('pages.catalog');
     }
+
+    public function productView()
+    {
+        return view('pages.product');
+    }
     public function aboutView()
     {
         return view('pages.about');
@@ -30,5 +35,10 @@ class PageController extends Controller
     public function basketView()
     {
         return view('pages.basket');
+    }
+
+    public function adminPanel()
+    {
+        return view('admin.admin');
     }
 }

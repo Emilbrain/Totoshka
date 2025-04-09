@@ -1,7 +1,7 @@
 @extends('template.app')
 
 @section('content')
-    <div class="section mt150px">
+    <div class="section mt150px mb100px">
         <h1>🛒 Ваша корзина</h1>
 
         <div class="cart-wrapper">
