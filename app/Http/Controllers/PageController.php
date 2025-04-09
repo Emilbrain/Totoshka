@@ -2,23 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Basket;
+use App\Models\Category;
+use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function indexView()
     {
-        return view('pages.index');
+        $products = Product::orderBy('created_at', 'desc')
+            ->take(4)
+            ->get();
+        return view('pages.index', compact('products'));
     }
 
-    public function catalogView()
+    public function catalogView(Request $request)
     {
-        return view('pages.catalog');
+
+        $categories = Category::all();
+
+        $products = Product::query();
+
+        if ($request->has('category') && $request->category) {
+            $products->where('category_id', $request->category);
+        }
+
+        $products = $products->latest()->paginate(12); // или ->get()
+
+        return view('pages.catalog', compact('products', 'categories'));
+
     }
 
-    public function productView()
+    public function productView($id)
     {
-        return view('pages.product');
+        $product = Product::findOrFail($id);
+        return view('pages.product', compact('product'));
     }
     public function aboutView()
     {
@@ -30,11 +50,17 @@ class PageController extends Controller
     }
     public function profileView()
     {
-        return view('pages.profile');
+        $orders = Order::where('user_id', auth()->id())->get();
+        return view('pages.profile' , compact('orders'));
     }
     public function basketView()
     {
-        return view('pages.basket');
+        $baskets = Basket::where('user_id', auth()->id())->get();
+        $total = 0 ;
+        foreach ($baskets as $item) {
+            $total = $total + $item->product->price * $item->quantity;
+        }
+        return view('pages.basket', compact('baskets', 'total'));
     }
 
     public function adminPanel()
@@ -42,3 +68,4 @@ class PageController extends Controller
         return view('admin.admin');
     }
 }
+

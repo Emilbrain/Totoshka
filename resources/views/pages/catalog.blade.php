@@ -7,73 +7,38 @@
 
             <!-- Фильтры и поиск -->
             <div class="catalog-controls">
-                <select class="catalog-filter">
-                    <option value="all">Все категории</option>
-                    <option value="toys">Игрушки</option>
-                    <option value="care">Уход</option>
-                    <option value="books">Книги</option>
-                </select>
+                <form method="GET" action="{{ route('catalog.view') }}" class="catalog-controls">
+                    <select class="catalog-filter" name="category" onchange="this.form.submit()">
+                        <option value="">Все категории</option>
+
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </form>
             </div>
 
             <!-- Сетка товаров -->
             <div class="catalog-grid">
-                <div class="product-card">
-                    <img src="{{asset('images/product/bunny/bunny.png')}}" alt="Мягкий зайка">
-                    <h3 class="product-title">Мягкий зайка</h3>
-                    <p class="product-price">1 290 ₽</p>
-                    <div class="product__btn btn">
-                        <a href="{{route('product.view')}}">Подробнее</a>
+                @forelse($products as $product)
+                    <div class="product-card">
+                        <img src="{{asset('storage/' . $product->images->first()->path)}}" alt="Мягкий зайка">
+                        <h3 class="product-title">{{$product->name}}</h3>
+                        <p class="product-price">{{$product->price}} ₽</p>
+                        <div class="product__btn btn">
+                            <a href="{{route('product.view', $product->id)}}">Подробнее</a>
+                        </div>
+                        @auth()
+                        <div class="product__btn btn">
+                            <a href="{{route('add.basket', $product->id)}}">В корзину 🛒</a>
+                        </div>
+                        @endauth
                     </div>
-                    <div class="product__btn btn">
-                        <a href="">В корзину 🛒</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="{{asset('images/plug/plug.png')}}" alt="Мягкий зайка">
-                    <h3 class="product-title">Мягкий зайка</h3>
-                    <p class="product-price">1 290 ₽</p>
-                    <div class="product__btn btn">
-                        <a href="">Подробнее</a>
-                    </div>
-                    <div class="product__btn btn">
-                        <a href="">В корзину 🛒</a>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="{{asset('images/plug/plug.png')}}" alt="Мягкий зайка">
-                    <h3 class="product-title">Мягкий зайка</h3>
-                    <p class="product-price">1 290 ₽</p>
-                    <div class="product__btn btn">
-                        <a href="">Подробнее</a>
-                    </div>
-                    <div class="product__btn btn">
-                        <a href="">В корзину 🛒</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="{{asset('images/plug/plug.png')}}" alt="Мягкий зайка">
-                    <h3 class="product-title">Мягкий зайка</h3>
-                    <p class="product-price">1 290 ₽</p>
-                    <div class="product__btn btn">
-                        <a href="">Подробнее</a>
-                    </div>
-                    <div class="product__btn btn">
-                        <a href="">В корзину 🛒</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="{{asset('images/plug/plug.png')}}" alt="Мягкий зайка">
-                    <h3 class="product-title">Мягкий зайка</h3>
-                    <p class="product-price">1 290 ₽</p>
-                    <div class="product__btn btn">
-                        <a href="">Подробнее</a>
-                    </div>
-                    <div class="product__btn btn">
-                        <a href="">В корзину 🛒</a>
-                    </div>
-                </div>
+                @empty
+                    <p>Товаров не найдено</p>
+                @endforelse
             </div>
         </div>
     </section>

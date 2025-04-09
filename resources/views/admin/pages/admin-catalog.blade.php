@@ -37,13 +37,13 @@
                             {{ $product->description }}
                         </div>
                     </td>
-                    <td>
+                    <td class="table__action">
                         {{--                        <button onclick="openEditModal('{{$product->id}}', '{{$product->name}}','{{$product->price}}','{{$product->category->name}}','{{$product->description}}', 'editProduct')" class="action-btn edit">✏️</button>--}}
                         <button class="action-btn edit" onclick="openEditModal({
                             id: {{$product->id}},
                             modalId: 'editProduct',
                             formId: 'editProductForm',
-                            routePrefix: 'admin/products',
+                            routePrefix: 'admin/products/edit',
                             values: {
                                 name: '{{$product->name}}',
                                 price: {{$product->price}},
@@ -52,7 +52,11 @@
                             }
                         })">✏️
                         </button>
-                        <button class="action-btn delete">🗑️</button>
+                        <form action="{{route('admin.products.delete', $product->id)}}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button class="action-btn delete">🗑️</button>
+                        </form>
                     </td>
                 </tr>
             @empty
@@ -65,3 +69,8 @@
         </table>
     </section>
 @endsection
+
+@include('admin.components.modal-add')
+@include('admin.components.modal-editProduct')
+
+

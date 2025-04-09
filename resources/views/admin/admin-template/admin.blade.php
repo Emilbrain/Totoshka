@@ -16,9 +16,9 @@
             <a href="/admin"><img src="{{asset('images/logo/logo.png')}}" alt=""></a>
             <nav class="admin-nav">
                 <a href="{{route('admin.catalog')}}" class="admin-nav-link">📦 Товары</a>
-                <a href="#" class="admin-nav-link">🛒 Заказы</a>
+                <a href="{{route('admin.orders')}}" class="admin-nav-link">🛒 Заказы</a>
                 <a href="{{route('admin.category')}}" class="admin-nav-link">📁 Категории</a>
-                <a href="#" class="admin-nav-link">👤 Пользователи</a>
+                <a href="{{route('admin.user')}}" class="admin-nav-link">👤 Пользователи</a>
             </nav>
             <form action="{{route('logout')}}" method="post">
                 @csrf
@@ -29,8 +29,6 @@
         @yield('content')
     </div>
 
-@include('admin.components.modal-add')
-@include('admin.components.modal-editProduct')
 @include('admin.components.modal-addCategory')
 @include('admin.components.modal-editCategory')
 <script src="{{asset('js/alert.js')}}"></script>
@@ -39,6 +37,7 @@
 <script src="{{asset('js/admin/ajax/ajax-addCategory.js')}}"></script>
 <script src="{{asset('js/admin/ajax/ajax-addProduct.js')}}"></script>
 <script src="{{asset('js/admin/ajax/ajax-editCategory.js')}}"></script>
+<script src="{{asset('js/admin/ajax/ajax-editProduct.js')}}"></script>
 </body>
 </html>
 

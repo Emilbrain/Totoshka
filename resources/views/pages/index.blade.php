@@ -48,39 +48,23 @@
         <div class="new-content">
             <h2>Новинки</h2>
             <div class="product-grid">
-                <div class="product-card">
-                    <img src="{{asset('images/product/bunny/bunny.png')}}" alt="Мягкий зайка">
-                    <h3 class="product-title">Мягкий зайка</h3>
-                    <p class="product-price">1 290 ₽</p>
-                    <div class="product__btn btn">
-                        <a href="">Подробнее</a>
+                @forelse($products as $product)
+                    <div class="product-card">
+                        <img src="{{asset('storage/' . $product->images->first()->path)}}" alt="Мягкий зайка">
+                        <h3 class="product-title">{{$product->name}}</h3>
+                        <p class="product-price">{{$product->price}} ₽</p>
+                        <div class="product__btn btn">
+                            <a href="{{route('product.view',  $product->id)}}">Подробнее</a>
+                        </div>
+                        @auth()
+                            <div class="product__btn btn">
+                                <a href="{{route('add.basket', $product->id)}}">В корзину 🛒</a>
+                            </div>
+                        @endauth
                     </div>
-                    <div class="product__btn btn">
-                        <a href="">В корзину 🛒</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="{{asset('images/plug/plug.png')}}" alt="Развивающий коврик">
-                    <h3 class="product-title">Развивающий коврик</h3>
-                    <p class="product-price">2 150 ₽</p>
-                    <div class="product__btn btn">
-                        <a href="">Подробнее</a>
-                    </div>
-                    <div class="product__btn btn">
-                        <a href="">В корзину 🛒</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <img src="{{asset('images/plug/plug.png')}}" alt="Погремушка в наборе">
-                    <h3 class="product-title">Погремушка (набор 3 шт)</h3>
-                    <p class="product-price">990 ₽</p>
-                    <div class="product__btn btn">
-                        <a href="">Подробнее</a>
-                    </div>
-                    <div class="product__btn btn">
-                        <a href="">В корзину 🛒</a>
-                    </div>
-                </div>
+                @empty
+                    <p>Товаров не найдено</p>
+                @endforelse
             </div>
         </div>
     </section>
@@ -90,11 +74,15 @@
             <h2>Часто задаваемые вопросы</h2>
             <div class="faq-item">
                 <div class="faq-question">Как оформить заказ?</div>
-                <div class="faq-answer">Добавьте товар в корзину, перейдите к оформлению и заполните данные для доставки.</div>
+                <div class="faq-answer">Добавьте товар в корзину, перейдите к оформлению и заполните данные для
+                    доставки.
+                </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">Какие способы оплаты доступны?</div>
-                <div class="faq-answer">Мы принимаем оплату банковскими картами, электронными кошельками и наложенным платежом.</div>
+                <div class="faq-answer">Мы принимаем оплату банковскими картами, электронными кошельками и наложенным
+                    платежом.
+                </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">Сколько длится доставка?</div>
@@ -102,7 +90,9 @@
             </div>
             <div class="faq-item">
                 <div class="faq-question">Можно ли вернуть товар?</div>
-                <div class="faq-answer">Да, в течение 14 дней с момента получения, при сохранении товарного вида и упаковки.</div>
+                <div class="faq-answer">Да, в течение 14 дней с момента получения, при сохранении товарного вида и
+                    упаковки.
+                </div>
             </div>
             <div class="faq-item">
                 <div class="faq-question">Есть ли программа лояльности?</div>

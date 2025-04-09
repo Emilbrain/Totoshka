@@ -19,16 +19,15 @@
             <div class="profile-orders">
                 <h3>🛒 Мои заказы</h3>
                 <ul class="order-list">
-                    <li>
-                        <span>Заказ №1245</span>
-                        <span>2 товара — 2 300 ₽</span>
-                        <span class="status">Доставлен</span>
-                    </li>
-                    <li>
-                        <span>Заказ №1244</span>
-                        <span>1 товар — 1 290 ₽</span>
-                        <span class="status waiting">В обработке</span>
-                    </li>
+                    @forelse($orders as $order)
+                        <li>
+                            <span>Заказ №{{$order->id}}</span>
+                            <span> На сумму — {{$order->total_price}} ₽</span>
+                            <span class="status">{{$order->status}}</span>
+                        </li>
+                    @empty
+                        <li>Заказов нет</li>
+                    @endforelse
                 </ul>
             </div>
 
