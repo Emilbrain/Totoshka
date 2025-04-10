@@ -1290,13 +1290,18 @@ h1 {
 /*------------------------------ADMIN-----------------------------------*/
 .admin-dashboard {
     display: flex;
-    min-height: 100vh;
+    /*min-height: 100vh;*/
+    /*height: 100%;*/
     font-family: 'Fredoka', sans-serif;
+}
+.admin-section{
+    min-height: 100vhd;
 }
 
 .admin-sidebar {
     width: 240px;
     background-color: #8D79F3;
+    min-height: 100%;
     color: #fff;
     padding: 30px 20px;
 }
@@ -1330,6 +1335,8 @@ h1 {
     flex: 1;
     background-color: #f5f4fc;
     padding: 40px;
+    min-height: 100vh;
+    /*min-width: 100vw;*/
 }
 
 .admin-header h1 {

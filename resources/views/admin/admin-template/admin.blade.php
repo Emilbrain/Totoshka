@@ -10,25 +10,22 @@
     <link rel="shortcut icon" href="{{asset('favicon.png')}}" type="image/x-icon">
 </head>
 <body>
-<div id="toast-container"></div>
 <div class="admin-dashboard">
-        <aside class="admin-sidebar">
-            <a href="/admin"><img src="{{asset('images/logo/logo.png')}}" alt=""></a>
-            <nav class="admin-nav">
-                <a href="{{route('admin.catalog')}}" class="admin-nav-link">📦 Товары</a>
-                <a href="{{route('admin.orders')}}" class="admin-nav-link">🛒 Заказы</a>
-                <a href="{{route('admin.category')}}" class="admin-nav-link">📁 Категории</a>
-                <a href="{{route('admin.user')}}" class="admin-nav-link">👤 Пользователи</a>
-            </nav>
-            <form action="{{route('logout')}}" method="post">
-                @csrf
-                <button class="logout-btn">Выйти из аккаунта</button>
-            </form>
-        </aside>
-
+    <aside class="admin-sidebar">
+        <a href="/admin"><img src="{{asset('images/logo/logo.png')}}" alt=""></a>
+        <nav class="admin-nav">
+            <a href="{{route('admin.catalog')}}" class="admin-nav-link">📦 Товары</a>
+            <a href="{{route('admin.orders')}}" class="admin-nav-link">🛒 Заказы</a>
+            <a href="{{route('admin.category')}}" class="admin-nav-link">📁 Категории</a>
+            <a href="{{route('admin.user')}}" class="admin-nav-link">👤 Пользователи</a>
+        </nav>
+        <form action="{{route('logout')}}" method="post">
+            @csrf
+            <button class="logout-btn">Выйти из аккаунта</button>
+        </form>
+    </aside>
         @yield('content')
-    </div>
-
+</div>
 @include('admin.components.modal-addCategory')
 @include('admin.components.modal-editCategory')
 <script src="{{asset('js/alert.js')}}"></script>
